@@ -1,0 +1,19 @@
+{
+  "name": "Acme Corp",
+  "arr": 58000,
+  "health_score": 87,
+  "tier": "Business",
+  "csm_name": "Sarah Johnson",
+  "contract_end_date": "2026-12-15",
+  "seats_total": 100,
+  "seats_active": 95,
+  "nps": 8,
+  "days_to_renewal": 265,
+  "champion": "Ben Martinez, VP Sales",
+  "economic_buyer": "Chloe Park, CFO",
+  "health_trend": "stable",
+  "api_calls_mom_growth_pct": 40,
+  "power_users": 8,
+  "current_plan": "Business 100",
+  "next_plan": "Business 150"
+}

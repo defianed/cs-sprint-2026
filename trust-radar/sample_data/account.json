@@ -1,0 +1,20 @@
+{
+  "name": "Acme Corp",
+  "arr": 72000,
+  "health_score": 38,
+  "tier": "Enterprise",
+  "csm_name": "Sarah Johnson",
+  "contract_end_date": "2026-05-31",
+  "seats_total": 80,
+  "seats_active": 52,
+  "nps": 5,
+  "nps_previous": 7,
+  "days_to_renewal": 68,
+  "champion": "Sarah Mitchell, VP Operations",
+  "economic_buyer": "Sarah Mitchell, VP Operations",
+  "health_trend": "declining",
+  "escalation_type": "win-back",
+  "escalation_opened": "2026-03-10",
+  "missed_commitments": 3,
+  "missed_commitment_details": "API GA promised Jan 15, then Feb 1, then Feb 28 \u2014 all missed"
+}

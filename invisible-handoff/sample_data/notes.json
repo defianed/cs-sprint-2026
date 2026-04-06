@@ -1,0 +1,17 @@
+{
+  "transcript_summary": "Closed Won — 2026-03-20. Final call confirmed three key commitments: (1) API will be GA by May 15, (2) dedicated onboarding engineer (Marcus) assigned for 30 days, (3) milestone-based payment schedule agreed. Sarah was engaged throughout. Mike joined for the last 10 minutes and asked two pointed questions about security and data residency — both answered satisfactorily.",
+  "sales_rep_notes": "Champion is Sarah (VP Eng) — she drove the whole evaluation. Mike (CTO) holds the budget and was skeptical throughout — he's been burned by a vendor before who promised GA timelines and missed them. Don't hedge on the API date in front of Mike. James in DevOps wasn't in any of our demos — he'll be the one doing the actual integration work. Get him into the kickoff call. Sarah said she'd handle that introduction. Watch: James can be a blocker if he feels he wasn't consulted.",
+  "commitments_made": [
+    "API GA by May 15 — confirmed with product team",
+    "Dedicated onboarding engineer (Marcus) for first 30 days",
+    "Custom migration guide for Node.js + Postgres stack",
+    "Milestone-based payment: 50% at kickoff, 50% at API GA",
+    "SOC 2 Type II report shared + pen test results provided"
+  ],
+  "objections_handled": [
+    "Security: SOC 2 Type II + pen test report reviewed and approved",
+    "Migration effort: committed to co-building migration guide for their stack",
+    "Pricing: milestone-based payment schedule agreed",
+    "Competitor comparison: outlined 3 technical differentiators vs DataBridge"
+  ]
+}

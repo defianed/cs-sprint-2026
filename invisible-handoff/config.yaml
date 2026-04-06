@@ -1,0 +1,12 @@
+# Who you are
+account_name: Acme Corp
+csm_name: Sarah Johnson
+slack_channel: "#cs-alerts"
+
+# What tools you use (provider=manual means use sample_data/ files)
+crm_provider: manual        # manual | salesforce | hubspot
+transcript_provider: manual # manual | gong | fireflies | fathom | zoom
+support_provider: manual    # manual | zendesk | intercom
+
+# Workflow-specific settings
+notion_enabled: false       # set true and add NOTION_API_KEY to .env to auto-create Notion pages

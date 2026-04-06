@@ -1,0 +1,22 @@
+{
+  "name": "Acme Corp",
+  "arr": 48000,
+  "health_score": null,
+  "tier": "Enterprise",
+  "csm_name": "Sarah Johnson",
+  "contract_end_date": "2027-03-20",
+  "seats_total": 50,
+  "deal_closed_date": "2026-03-20",
+  "deal_closed_by": "Jake Hoffman",
+  "company_size": 200,
+  "industry": "fintech",
+  "champion": "Sarah Okonkwo, VP Engineering",
+  "economic_buyer": "Mike Chen, CTO",
+  "implementation_contact": "James Liu, Senior DevOps",
+  "q3_launch_deadline": "2026-08-01",
+  "payment_terms": "50% at kickoff, 50% at API GA",
+  "competitors_evaluated": [
+    "DataBridge",
+    "NovaSuite"
+  ]
+}

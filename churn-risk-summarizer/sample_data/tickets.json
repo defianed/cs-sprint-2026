@@ -1,0 +1,29 @@
+[
+  {
+    "id": "TKT-1847",
+    "title": "Salesforce CRM sync failing \u2014 data not updating",
+    "status": "open",
+    "priority": "high",
+    "created_at": "2026-03-04",
+    "resolved_at": null,
+    "body": "Our Salesforce integration stopped syncing three days ago. Contact records are not updating and our RevOps team cannot rely on the data. This is blocking our weekly pipeline review. We've been waiting 14 days with no resolution timeline provided."
+  },
+  {
+    "id": "TKT-1792",
+    "title": "Export formatting issue \u2014 pivot table breaks in Excel",
+    "status": "closed",
+    "priority": "low",
+    "created_at": "2026-02-15",
+    "resolved_at": "2026-02-18",
+    "body": "When exporting to CSV for board reporting, the date columns break Excel's pivot table format. Our team has to manually reformat before every board deck. Workaround works but is tedious."
+  },
+  {
+    "id": "TKT-1755",
+    "title": "Login SSO timeout \u2014 users being logged out mid-session",
+    "status": "closed",
+    "priority": "medium",
+    "created_at": "2026-02-02",
+    "resolved_at": "2026-02-09",
+    "body": "Multiple team members are being logged out of their sessions after approximately 20 minutes, even during active use. We suspect a SSO token refresh issue. Resolved after 7 days but this may have contributed to the two users who stopped using the platform."
+  }
+]

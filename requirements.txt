@@ -1,0 +1,6 @@
+anthropic
+openai
+slack-sdk
+python-dotenv
+pyyaml
+requests

@@ -1,0 +1,19 @@
+{
+  "name": "Acme Corp",
+  "arr": 28800,
+  "health_score": 91,
+  "tier": "Growth",
+  "csm_name": "Sarah Johnson",
+  "contract_end_date": "2027-03-15",
+  "seats_total": 25,
+  "seats_active": 24,
+  "nps": 9,
+  "nps_previous": 7,
+  "days_to_renewal": 356,
+  "champion": "Priya Sharma, Head of Customer Success",
+  "economic_buyer": "Kevin Tran, VP Revenue",
+  "health_trend": "improving",
+  "went_live_date": "2026-03-10",
+  "go_live_ahead_of_schedule_days": 5,
+  "first_month_seat_adoption_pct": 96
+}

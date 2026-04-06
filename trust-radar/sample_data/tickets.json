@@ -1,0 +1,29 @@
+[
+  {
+    "id": "TKT-2891",
+    "title": "API GA date confirmation \u2014 January commitment missed",
+    "status": "closed",
+    "priority": "high",
+    "created_at": "2026-01-16",
+    "resolved_at": "2026-01-22",
+    "body": "We were told API would go live January 15. It did not. Our team had to manually process 200 records that were supposed to be handled automatically. We need a firm new date and a written explanation of what happened."
+  },
+  {
+    "id": "TKT-2944",
+    "title": "API GA \u2014 second missed date (Feb 1)",
+    "status": "closed",
+    "priority": "urgent",
+    "created_at": "2026-02-03",
+    "resolved_at": "2026-02-18",
+    "body": "This is the second time the API GA date has slipped. We restructured our Q1 workflow around this feature. My team spent 40 hours last month doing manual work your product was supposed to automate. We need escalation to your VP of Product."
+  },
+  {
+    "id": "TKT-3012",
+    "title": "API still not live \u2014 third missed date (Feb 28). Escalating to executive review.",
+    "status": "open",
+    "priority": "critical",
+    "created_at": "2026-03-01",
+    "resolved_at": null,
+    "body": "Three missed commitments. January 15, February 1, February 28. Each time we were told it was 'almost ready.' We are now actively evaluating alternative vendors. This ticket should be reviewed by your leadership team."
+  }
+]

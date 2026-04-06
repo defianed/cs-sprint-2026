@@ -1,0 +1,12 @@
+{
+  "call_id": "CALL-20260320-0412",
+  "account_id": "ACC-00412",
+  "account_name": "Brightline Health",
+  "call_date": "2026-03-20",
+  "duration_minutes": 28,
+  "participants": [
+    {"name": "Sarah Johnson", "role": "CSM", "company": "ExtensibleAgents"},
+    {"name": "Marcus Webb", "role": "Director of Customer Operations", "company": "Brightline Health"}
+  ],
+  "transcript": "Sarah: Marcus, great to connect. How's Q1 been treating you?\n\nMarcus: Really good actually. Better than we expected. The team has fully adopted the churn risk workflow — they're running it every Friday on their top accounts. It's become part of the rhythm.\n\nSarah: That's amazing to hear. What's been the biggest win from it?\n\nMarcus: We caught a churn risk on OceanView Corp two weeks ago that we would have completely missed. They'd gone quiet, no one had noticed because the health score in Salesforce still looked fine. The workflow flagged the drop in transcript engagement. We jumped on it, got an executive call booked within 48 hours, and they've just extended for another year.\n\nSarah: That's exactly the use case. What's the dollar value on that renewal?\n\nMarcus: 85k ARR. So the tool has already paid for itself several times over.\n\nSarah: I love hearing this. How's the team size now?\n\nMarcus: We've grown. We were 8 CSMs when we started, now we're 14. We've got 3 more starting in April.\n\nSarah: So you're outgrowing your current seat count — you're on 10 right now.\n\nMarcus: Yeah that's been on my to-do list. We need to sort that out before April.\n\nSarah: Easy to fix. And with 17 CSMs running this weekly — have you thought about what the next workflow would be?\n\nMarcus: Actually yes. The team keeps asking about the expansion signal one. We've got accounts where the health score is great and we know there's upsell potential but the CSMs aren't sure when to bring it up. That workflow sounds like exactly what we need.\n\nSarah: It is. It reads the transcript, looks at product usage, and tells you when the moment is right — and gives you the ask language. I can set it up with you this week if you want.\n\nMarcus: Yes. Let's do it. Budget's approved for the seat expansion too — can we sort both in one call?\n\nSarah: Absolutely. I'll send you a proposal for the seat upgrade and a setup link for the expansion detector. We can be live by Thursday.\n\nMarcus: Perfect. Really happy with how this has gone Sarah. You've made it easy."
+}

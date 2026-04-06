@@ -1,0 +1,21 @@
+{
+  "name": "Acme Corp",
+  "arr": 84000,
+  "health_score": 47,
+  "tier": "Enterprise",
+  "csm_name": "Sarah Johnson",
+  "contract_end_date": "2026-09-30",
+  "seats_total": 100,
+  "seats_active": 61,
+  "nps": 6,
+  "nps_previous": 8,
+  "days_to_renewal": 189,
+  "champion": "Marcus Webb, VP Operations",
+  "economic_buyer": "Dana Price, COO",
+  "health_trend": "declining",
+  "last_login_drop_pct": 40,
+  "ghost_users": 2,
+  "missed_check_ins": 2,
+  "open_support_tickets": 1,
+  "open_ticket_age_days": 14
+}

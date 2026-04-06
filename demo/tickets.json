@@ -1,0 +1,38 @@
+[
+  {
+    "ticket_id": "ZD-18823",
+    "account": "Meridian Software",
+    "subject": "Gong integration not pulling transcripts",
+    "status": "open",
+    "priority": "high",
+    "created_at": "2026-03-10",
+    "last_updated": "2026-03-18",
+    "assignee": "Support Team",
+    "body": "We set up the Gong integration last week but transcripts aren't appearing in the workflow. We've tried reconnecting three times. Our team is blocked on this — we can't demo the tool to leadership until it works.",
+    "csm_note": "Third ticket on this issue. Engineering has a fix in sprint but not deployed yet."
+  },
+  {
+    "ticket_id": "ZD-19041",
+    "account": "Meridian Software",
+    "subject": "Need training session for new CS hires",
+    "status": "open",
+    "priority": "medium",
+    "created_at": "2026-03-15",
+    "last_updated": "2026-03-15",
+    "assignee": "Sarah Johnson",
+    "body": "We have 4 new CSMs joining next month. Can we get a group onboarding session? The documentation is helpful but they learn better with a live walkthrough.",
+    "csm_note": "Should schedule before renewal discussion in May."
+  },
+  {
+    "ticket_id": "ZD-17654",
+    "account": "Meridian Software",
+    "subject": "Workflow output format — request for CSV export",
+    "status": "closed",
+    "priority": "low",
+    "created_at": "2026-02-20",
+    "last_updated": "2026-02-28",
+    "assignee": "Product Team",
+    "body": "We'd like to be able to export workflow outputs as CSV so we can pull them into our weekly CS report in Google Sheets. Currently we're copying manually.",
+    "csm_note": "Closed as product feedback. On roadmap Q3."
+  }
+]
