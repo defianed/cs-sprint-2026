@@ -207,3 +207,51 @@ If you hit an error not listed here: diagnose from the traceback, fix if you can
 - Use plain language. "I've installed the dependencies" not "The pip install command has completed successfully."
 - When something works, celebrate it briefly: "✅ Running. Here's what it produced."
 - When something fails, diagnose first. Only surface the error to the user if you can't fix it yourself.
+
+---
+
+## Building New Workflows
+
+Use this when the user wants to extend the repo or build something new.
+
+### 3-Layer Architecture
+
+**Layer 1 — Directives (`directives/*.md`)**
+SOPs defining goals, inputs, tools, outputs, and edge cases. Write one before touching code.
+
+**Layer 2 — Orchestration (You)**
+Read the directive → call execution scripts → handle errors → update learnings.
+
+**Layer 3 — Execution (`execution/*.py`)**
+Deterministic Python scripts for APIs, data processing, file ops. Credentials always in `.env`.
+
+Why this structure: LLMs compound errors (90%^5 = 59% success on 5-step chains). Push complexity to deterministic code and keep the LLM layer thin.
+
+### Core Rules
+
+1. **Check `execution/` before writing new scripts.** Reuse what's there.
+
+2. **Self-anneal on errors.** Fix script → test → update the directive with what you learned. Don't repeat the same mistake.
+
+3. **Update directives.** Document API limits, better approaches, common errors. Never overwrite a directive without asking first.
+
+4. **NEVER hardcode credentials.** API keys, tokens, passwords must never appear in any committed file — directives, scripts, markdown, config, anywhere. All credentials live in `.env` (local) or environment variables (production). Use placeholders like `<your_api_key_here>` in examples.
+
+### File Organisation
+
+```
+directives/        SOPs for each workflow or integration
+execution/         Python scripts (deterministic, no LLM calls)
+.tmp/              Intermediate files — never commit
+.env               Credentials — never commit, never read directly
+```
+
+### Model Selection
+
+| Model | Use For |
+|---|---|
+| claude-haiku-4-5 | Simple, repetitive tasks |
+| claude-sonnet-4-6 | Standard work (default) |
+| claude-opus-4-6 | Genuinely complex reasoning only |
+
+Be cost-conscious. Default to Sonnet unless there's a clear reason not to.
