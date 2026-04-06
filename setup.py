@@ -93,6 +93,46 @@ def main():
     configs = {wf: {} for wf in WORKFLOWS}
 
     # ─────────────────────────────────────────────
+    # STEP 0 — DATA SOURCE
+    # ─────────────────────────────────────────────
+    header("Step 0 — Data Source")
+    print("  These workflows need CS data to run against.\n")
+    print(f"  {BOLD}Option 1 — Live demo data (recommended){RESET}")
+    print("  We host 10 realistic dummy companies — full CRM records, call")
+    print("  transcripts, helpdesk tickets, billing data, and usage stats.")
+    print("  Use your sprint API key and the workflows connect instantly.\n")
+    print(f"  {BOLD}Option 2 — Your own tools{RESET}")
+    print("  Connect your real Salesforce, Gong, Zendesk etc.")
+    print("  Takes 5–10 minutes to configure.\n")
+
+    data_source = ask_choice(
+        "Which would you like to start with?",
+        [
+            ("demo_stack", "Live demo data  (instant — recommended for the webinar)"),
+            ("own",        "My own tools   (Salesforce, Gong, Zendesk etc.)"),
+        ],
+        default="demo_stack"
+    )
+
+    use_demo_stack = (data_source == "demo_stack")
+
+    if use_demo_stack:
+        print()
+        demo_key = ask("Enter your demo stack API key (sprint-XXXXXX-XXXXXX)", secret=False)
+        if demo_key and demo_key.startswith("sprint-"):
+            env["DEMO_STACK_API_KEY"] = demo_key
+            for wf in WORKFLOWS:
+                configs[wf]["data_source"] = "demo_stack"
+                configs[wf]["crm_provider"] = "demo_stack"
+                configs[wf]["transcript_provider"] = "demo_stack"
+                configs[wf]["support_provider"] = "demo_stack"
+            success("Demo stack key saved. All workflows will use live demo data.")
+        else:
+            warn("Key not recognised — expected format: sprint-XXXXXX-XXXXXX")
+            warn("Continuing without demo stack — falling back to sample data mode.")
+            use_demo_stack = False
+
+    # ─────────────────────────────────────────────
     # STEP 1 — API KEY
     # ─────────────────────────────────────────────
     header("Step 1 — LLM API Key")
@@ -164,6 +204,17 @@ def main():
     # ─────────────────────────────────────────────
     # STEP 4 — TOOL STACK
     # ─────────────────────────────────────────────
+    if use_demo_stack:
+        header("Step 4 — Tool Stack (skipped)")
+        print("  Using demo stack — no tool configuration needed.")
+        print("  When you're ready to connect your real tools, re-run setup.py and choose 'My own tools'.\n")
+    else:
+        _configure_tool_stack(env, configs)
+
+    _write_and_test(env, configs)
+
+
+def _configure_tool_stack(env, configs):
     header("Step 4 — Your Tool Stack")
     print("  Tell us what tools you use. We'll connect the workflows automatically.")
     print("  Choose 'manual' if you don't use that category — you can always add it later.\n")
@@ -291,6 +342,8 @@ def main():
     for wf in WORKFLOWS:
         configs[wf]["output_destination"] = output_dest
 
+
+def _write_and_test(env, configs):
     # ─────────────────────────────────────────────
     # WRITE FILES
     # ─────────────────────────────────────────────

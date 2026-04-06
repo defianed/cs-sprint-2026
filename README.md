@@ -6,7 +6,24 @@ Built for the [ExtensibleAgents](https://extensibleagents.com) webinar. No devel
 
 ---
 
-## ⚡ Quickest way to start
+## ⚡ Quick Start — Sprint Participants (you have an API key)
+
+```bash
+git clone https://github.com/defianed/cs-sprint-2026
+cd cs-sprint-2026
+pip install -r requirements.txt
+python3 setup.py
+```
+
+When setup asks *"Demo data or your own tools?"* — choose **Demo data** and paste your `sprint-XXXXXX-XXXXXX` key.
+
+Done. All 5 workflows run immediately against 10 realistic dummy companies — CRM, calls, tickets, billing, usage. No Salesforce, Gong, or Zendesk needed.
+
+**To switch which company you're analysing:** edit `account_name` in the workflow's `config.yaml`.
+
+---
+
+## ⚡ Quickest way to start (without a sprint key)
 
 **Open this repo in [Claude Code](https://claude.ai/code) and say:**
 

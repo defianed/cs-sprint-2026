@@ -10,8 +10,9 @@ Modes:
 Config: edit config.yaml (no secrets there)
 Secrets: copy .env.example to .env and add your API key
 """
-import os, json
+import os, json, sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 try:
     from dotenv import load_dotenv
@@ -126,6 +127,20 @@ def analyse_trust(data: dict) -> dict:
         return {"classification": "UNCLEAR", "confidence": 0.0, "reasoning": f"Parse error: {raw[:300]}", "evidence_snippets": [], "response_strategy": "Manual review required.", "urgency_score": 5, "recommended_actions": []}
 
 
+def load_demo_stack_data(account_name: str = "Acme Corp") -> dict:
+    api_key = os.getenv("DEMO_STACK_API_KEY", "").strip()
+    if not api_key:
+        raise ValueError("DEMO_STACK_API_KEY not set in .env")
+    from demo_stack.client import DemoStackClient
+    client = DemoStackClient(api_key)
+    companies = client.list_companies()
+    company = next(
+        (c for c in companies if c.get("name", "").lower() == account_name.lower()),
+        companies[0] if companies else {"id": "00000001-0000-0000-0000-000000000000"}
+    )
+    return client.get_account_context(company["id"])
+
+
 def load_sample_data() -> dict:
     data = {}
     for filename in ["account.json", "transcript.json", "tickets.json", "notes.json"]:
@@ -150,7 +165,18 @@ def main():
     print(f"  Account : {account_name}")
     print(f"  CSM     : {csm_name}")
 
-    data = load_sample_data()
+    data_source = config.get("data_source", "sample")
+    if data_source == "demo_stack":
+        print(f"\n[DEMO STACK] Loading live data for {account_name}...")
+        try:
+            data = load_demo_stack_data(account_name)
+            print(f"[DEMO STACK] Loaded: {data.get('account', {}).get('name', account_name)}\n")
+        except Exception as e:
+            print(f"[DEMO STACK] Failed: {e}")
+            print("[DEMO STACK] Falling back to sample data.\n")
+            data = load_sample_data()
+    else:
+        data = load_sample_data()
     if "account" in data:
         data["account"]["name"] = account_name
 

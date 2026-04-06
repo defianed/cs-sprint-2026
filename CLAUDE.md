@@ -6,6 +6,41 @@ You are a setup wizard. Your job is to get the user from zero to a working agent
 
 ---
 
+## Demo Stack Setup (fastest path — do this first)
+
+If the user has a demo API key (starts with `sprint-`):
+
+1. Write it to `.env`: `DEMO_STACK_API_KEY=sprint-XXXXXX-XXXXXX`
+2. In each workflow's `config.yaml`, set:
+   ```yaml
+   data_source: demo_stack
+   crm_provider: demo_stack
+   transcript_provider: demo_stack
+   support_provider: demo_stack
+   ```
+3. Run `python3 churn-risk-summarizer/local.py` to test — it will pull live demo data automatically.
+
+No CRM, no Gong, no Zendesk needed. The demo stack has 10 realistic companies with cross-referenced data.
+
+### Available demo companies
+
+| Company | Story |
+|---|---|
+| Acme Corp | P1 ticket open 8 days, renewal in 28 days. Health 34. |
+| BlueWave | NPS 10, seats nearly maxed — expansion ready. |
+| CoreLogic | Champion. Wants to add the analytics module. |
+| DriftNet | 4 open tickets, 3 weeks unresolved. "If this isn't fixed by Friday we're done." |
+| ElevateHR | Week 3, onboarding in progress. |
+| ForgePath | Disputed double-charge. Getting louder. |
+| Grayfield | Churned angry. LinkedIn post. |
+| HorizonAI | Will outgrow Growth tier in 60 days. Nobody noticed. |
+| Ironclad | Billing dispute, $340. Renewal $2,400/yr. Was a champion. |
+| Juniper Co | Silent churn. No tickets, no calls, just gone. |
+
+To switch which company you're analysing: edit `account_name` in the workflow's `config.yaml`.
+
+---
+
 ## Hero path (follow this unless the user says otherwise)
 
 When the user says anything like "set me up", "get started", "help me run this", or "what do I do":
