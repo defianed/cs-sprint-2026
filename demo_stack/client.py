@@ -10,7 +10,7 @@ REST endpoints for billing use standard GET requests.
 import os
 import json
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, Union, List
 import requests
 
 BASE_URL = "https://lab.extensibleagents.com"
@@ -55,9 +55,10 @@ class DemoStackClient:
         self.session.headers.update({
             "X-API-Key": self.api_key,
             "Content-Type": "application/json",
-            "Accept": "application/json",
+            "Accept": "application/json, text/event-stream",
         })
         self._mcp_id = 0
+        self._sessions = {}  # endpoint -> session_id
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -67,20 +68,60 @@ class DemoStackClient:
         self._mcp_id += 1
         return self._mcp_id
 
+    def _ensure_session(self, endpoint: str) -> None:
+        """Initialize an MCP session for the given endpoint if not already done."""
+        if endpoint in self._sessions:
+            return
+        init_payload = {
+            "jsonrpc": "2.0",
+            "method": "initialize",
+            "params": {
+                "protocolVersion": "2025-03-26",
+                "capabilities": {},
+                "clientInfo": {"name": "cs-sprint", "version": "1.0"},
+            },
+            "id": self._next_id(),
+        }
+        resp = self.session.post(f"{BASE_URL}{endpoint}", json=init_payload)
+        resp.raise_for_status()
+        session_id = resp.headers.get("Mcp-Session-Id")
+        if session_id:
+            self._sessions[endpoint] = session_id
+        # Send initialized notification
+        notif = {"jsonrpc": "2.0", "method": "notifications/initialized"}
+        headers = {"Mcp-Session-Id": session_id} if session_id else {}
+        self.session.post(f"{BASE_URL}{endpoint}", json=notif, headers=headers)
+
+    @staticmethod
+    def _parse_sse(text: str) -> dict:
+        """Parse SSE response to extract JSON-RPC data."""
+        for line in text.strip().split("\n"):
+            if line.startswith("data: "):
+                try:
+                    return json.loads(line[6:])
+                except json.JSONDecodeError:
+                    continue
+        # Fallback: try parsing whole response as JSON
+        return json.loads(text)
+
     def _mcp_call(self, endpoint: str, tool: str, arguments: dict) -> dict:
         """
         Send a JSON-RPC 2.0 tools/call request to an MCP endpoint and return
-        the parsed result. Raises on HTTP errors or JSON-RPC error responses.
+        the parsed result. Handles session init and SSE response format.
         """
+        self._ensure_session(endpoint)
         payload = {
             "jsonrpc": "2.0",
             "method": "tools/call",
             "params": {"name": tool, "arguments": arguments},
             "id": self._next_id(),
         }
-        resp = self.session.post(f"{BASE_URL}{endpoint}", json=payload)
+        headers = {}
+        if endpoint in self._sessions:
+            headers["Mcp-Session-Id"] = self._sessions[endpoint]
+        resp = self.session.post(f"{BASE_URL}{endpoint}", json=payload, headers=headers)
         resp.raise_for_status()
-        body = resp.json()
+        body = self._parse_sse(resp.text)
         if "error" in body:
             raise RuntimeError(
                 f"MCP error from {endpoint}/{tool}: {body['error']}"
@@ -99,7 +140,7 @@ class DemoStackClient:
                     return {"text": raw}
         return result
 
-    def _get(self, path: str) -> dict | list:
+    def _get(self, path: str) -> Union[dict, list]:
         """Simple authenticated GET for REST endpoints."""
         resp = self.session.get(f"{BASE_URL}{path}")
         resp.raise_for_status()
